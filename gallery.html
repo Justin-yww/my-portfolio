@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Full Gallery | Justin Yong Wenn Weii</title>
+
+    <!-- Meta Description -->
+    <meta
+      name="description"
+      content="Personal gallery of Justin Yong - Software Engineering Student at Sunway University. Events, achievements, and memorable moments."
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://justinyww.vercel.app/gallery.html"
+    />
+    <meta property="og:title" content="Full Gallery | Justin Yong Wenn Weii" />
+    <meta
+      property="og:description"
+      content="Personal gallery of Justin Yong - Software Engineering Student at Sunway University. Events, achievements, and memorable moments."
+    />
+    <meta
+      property="og:image"
+      content="https://justinyww.vercel.app/assets/img/profile.jpeg"
+    />
+
+    <!-- Additional Meta Tags -->
+    <meta name="author" content="Justin Yong Wenn Weii" />
+    <meta
+      name="keywords"
+      content="Justin Yong, Personal Gallery, Events, Achievements, University Life, Malaysia"
+    />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="logo">JUSTIN YONG</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="gallery.html" class="active">Gallery</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Gallery Header -->
+    <section class="page-header">
+      <div class="container">
+        <div class="header-content fade-in">
+          <h1>Personal Gallery</h1>
+          <p class="header-subtitle">
+            A curated collection of personal events, achievements, and memorable
+            moments from my journey.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Full Gallery Section -->
+    <section class="section gallery-page">
+      <div class="container">
+        <!-- Events & Achievements -->
+        <div class="gallery-category fade-in">
+          <h2 class="category-title">Events & Achievements</h2>
+          <div class="gallery-grid">
+            <div class="gallery-item fade-in">
+              <img
+                src="assets/img/img_AppliedHE.jpeg"
+                alt="AppliedHE XChange 2024"
+              />
+              <div class="gallery-overlay">
+                <h3>AppliedHE XChange 2024</h3>
+                <p>Panelist speaker for student panel discussion</p>
+              </div>
+            </div>
+            <div class="gallery-item fade-in">
+              <img src="assets/img/img_JCF.jpeg" alt="JCF Awards Ceremony" />
+              <div class="gallery-overlay">
+                <h3>JCF Awards Ceremony</h3>
+                <p>
+                  Recipient of the prestigious Sunway-Lancaster Chancellor's
+                  Scholarship
+                </p>
+              </div>
+            </div>
+            <div class="gallery-item fade-in">
+              <img src="assets/img/img_CIMB.jpeg" alt="CIMB Internship Offer" />
+              <div class="gallery-overlay">
+                <h3>CIMB Internship Offer</h3>
+                <p>CIMB Discorvery Day Summer 2024</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- University Life -->
+        <div class="gallery-category fade-in">
+          <h2 class="category-title">University Life</h2>
+          <div class="gallery-grid">
+            <div class="gallery-item fade-in">
+              <img
+                src="assets/img/img_SunFest.jpeg"
+                alt="SunFest Opening Ceremony"
+              />
+              <div class="gallery-overlay">
+                <h3>SunFest 2025</h3>
+                <p>
+                  An initiative that raised RM 12,000 for community projects and
+                  women's welfare
+                </p>
+              </div>
+            </div>
+            <div class="gallery-item fade-in">
+              <img src="assets/img/img_MoonFest.jpeg" alt="MoonFest 2025" />
+              <div class="gallery-overlay">
+                <h3>MoonFest</h3>
+                <p>The grand finale to SunFest 2025</p>
+              </div>
+            </div>
+            <div class="gallery-item fade-in">
+              <img
+                src="assets/img/img_STC.jpeg"
+                alt="Sunway Tech Club Onboarding"
+              />
+              <div class="gallery-overlay">
+                <h3>Sunway Tech Club</h3>
+                <p>
+                  A vibrant community for students who are passionate about
+                  technology and innovation
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Image Modal for Full View -->
+    <div id="imageModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="modalImage" />
+      <div id="caption"></div>
+    </div>
+
+    <!--JavaScript -->
+    <script src="js/script.js"></script>
+    <script>
+      // Image modal functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const captionText = document.getElementById("caption");
+        const span = document.getElementsByClassName("close")[0];
+
+        // Add click listeners to all gallery images
+        document.querySelectorAll(".gallery-item img").forEach((img) => {
+          img.addEventListener("click", function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+          });
+        });
+
+        // Close modal when clicking the X
+        span.onclick = function () {
+          modal.style.display = "none";
+        };
+
+        // Close modal when clicking outside the image
+        modal.onclick = function (event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        };
+
+        // Close modal with Escape key
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") {
+            modal.style.display = "none";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
