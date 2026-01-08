@@ -63,19 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Navigation bar background opacity on scroll
-  window.addEventListener("scroll", () => {
-    const nav = document.querySelector("nav");
-    const scrolled = window.pageYOffset;
-    const rate = scrolled * -0.5;
-
-    if (scrolled > 100) {
-      nav.style.background = "rgba(255, 255, 255, 0.98)";
-    } else {
-      nav.style.background = "rgba(255, 255, 255, 0.95)";
-    }
-  });
-
   // Add parallax effect to hero section
   window.addEventListener("scroll", () => {
     const scrolled = window.pageYOffset;
