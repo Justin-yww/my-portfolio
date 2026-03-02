@@ -1,11 +1,12 @@
 /*
 |=============================================================================|
               JavaScript for Personal Portfolio Website
+              Lightweight, performance-focused interactions
 |=============================================================================|
 */
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Smooth scrolling for navigation links
+  // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
@@ -19,135 +20,86 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Fade in animation on scroll
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  };
+  // Intersection Observer for fade-in animations
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
+  if (!prefersReducedMotion) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -40px 0px",
+      }
+    );
+
+    document.querySelectorAll(".fade-in").forEach((el) => {
+      observer.observe(el);
+    });
+  } else {
+    // If reduced motion is preferred, show everything immediately
+    document.querySelectorAll(".fade-in").forEach((el) => {
+      el.classList.add("visible");
+    });
+  }
+
+  // Gallery item click - open modal if on gallery page
+  document.querySelectorAll(".gallery-item").forEach((item) => {
+    item.addEventListener("click", () => {
+      const img = item.querySelector("img");
+      const modal = document.getElementById("imageModal");
+      if (modal && img) {
+        const modalImg = document.getElementById("modalImage");
+        const captionText = document.getElementById("caption");
+        modal.style.display = "block";
+        // Trigger reflow for transition
+        modal.offsetHeight;
+        modal.classList.add("active");
+        modalImg.src = img.src;
+        captionText.innerHTML = img.alt;
       }
     });
-  }, observerOptions);
-
-  // Observe all fade-in elements
-  document.querySelectorAll(".fade-in").forEach((el) => {
-    observer.observe(el);
   });
 
-  // Gallery item interactions
-  document.querySelectorAll(".gallery-item").forEach((item, index) => {
-    item.addEventListener("click", () => {
-      // Add click animation
-      item.style.transform = "scale(1.1)";
+  // Modal close functionality
+  const modal = document.getElementById("imageModal");
+  if (modal) {
+    const closeBtn = modal.querySelector(".close");
+
+    function closeModal() {
+      modal.classList.remove("active");
       setTimeout(() => {
-        item.style.transform = "scale(1.05)";
-      }, 200);
+        modal.style.display = "none";
+      }, 300);
+    }
 
-      // Optional: Add functionality to open modal/lightbox here
-      console.log(`Gallery item ${index + 1} clicked`);
+    if (closeBtn) {
+      closeBtn.addEventListener("click", closeModal);
+    }
+
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) {
+        closeModal();
+      }
     });
-  });
 
-  // Enhanced project card hover effects
-  document.querySelectorAll(".project-card").forEach((card) => {
-    card.addEventListener("mouseenter", () => {
-      card.style.transform = "translateY(-15px) rotateX(5deg)";
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && modal.style.display === "block") {
+        closeModal();
+      }
     });
-
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "translateY(0) rotateX(0)";
-    });
-  });
-
-  // Add parallax effect to hero section
-  window.addEventListener("scroll", () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector(".hero");
-    const rate = scrolled * -0.5;
-
-    hero.style.transform = `translateY(${rate}px)`;
-  });
-
-  // Contact form validation (if you add a form later)
-  function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
   }
 
-  // Project link tracking (for analytics)
-  document.querySelectorAll(".project-link").forEach((link) => {
-    link.addEventListener("click", function (e) {
-      const linkType = this.textContent.includes("Slide")
-        ? "presentation"
-        : "repository";
-      const projectTitle =
-        this.closest(".project-card").querySelector(
-          ".project-title"
-        ).textContent;
-
-      console.log(`Project link clicked: ${projectTitle} - ${linkType}`);
-      // Add analytics tracking here if needed
-    });
-  });
-
-  // Mobile menu toggle (for future mobile menu implementation)
-  function toggleMobileMenu() {
-    const navLinks = document.querySelector(".nav-links");
-    navLinks.classList.toggle("active");
-  }
-
-  // Keyboard navigation support
-  document.addEventListener("keydown", function (e) {
-    // Press 'H' to go to home
-    if (e.key === "h" || e.key === "H") {
-      document.querySelector("#home").scrollIntoView({ behavior: "smooth" });
-    }
-    // Press 'P' to go to projects
-    if (e.key === "p" || e.key === "P") {
-      document
-        .querySelector("#projects")
-        .scrollIntoView({ behavior: "smooth" });
-    }
-    // Press 'G' to go to gallery
-    if (e.key === "g" || e.key === "G") {
-      document.querySelector("#gallery").scrollIntoView({ behavior: "smooth" });
-    }
-    // Press 'C' to go to contact
-    if (e.key === "c" || e.key === "C") {
-      document.querySelector("#contact").scrollIntoView({ behavior: "smooth" });
-    }
-  });
-
-  // Performance optimization: Throttle scroll events
-  function throttle(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
-  }
-
-  // Throttled scroll handler for better performance
-  const throttledScrollHandler = throttle(() => {
-    // Add any scroll-based animations or effects here
-  }, 16); // ~60fps
-
-  window.addEventListener("scroll", throttledScrollHandler);
-
-  // Loading animation for page
+  // Page load animation
   window.addEventListener("load", () => {
     document.body.classList.add("loaded");
   });
-
-  // Console message for developers
-  console.log("🎨 Portfolio loaded successfully! Built with ❤️");
-  console.log("Keyboard shortcuts: H(ome), P(rojects), G(allery), C(ontact)");
 });

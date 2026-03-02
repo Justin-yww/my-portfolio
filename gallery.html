@@ -45,6 +45,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="gallery.html" class="active">Gallery</a></li>
+          <li><a href="journey.html">Journey</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
       </div>
@@ -151,42 +152,5 @@
 
     <!--JavaScript -->
     <script src="js/script.js"></script>
-    <script>
-      // Image modal functionality
-      document.addEventListener("DOMContentLoaded", function () {
-        const modal = document.getElementById("imageModal");
-        const modalImg = document.getElementById("modalImage");
-        const captionText = document.getElementById("caption");
-        const span = document.getElementsByClassName("close")[0];
-
-        // Add click listeners to all gallery images
-        document.querySelectorAll(".gallery-item img").forEach((img) => {
-          img.addEventListener("click", function () {
-            modal.style.display = "block";
-            modalImg.src = this.src;
-            captionText.innerHTML = this.alt;
-          });
-        });
-
-        // Close modal when clicking the X
-        span.onclick = function () {
-          modal.style.display = "none";
-        };
-
-        // Close modal when clicking outside the image
-        modal.onclick = function (event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
-        };
-
-        // Close modal with Escape key
-        document.addEventListener("keydown", function (event) {
-          if (event.key === "Escape") {
-            modal.style.display = "none";
-          }
-        });
-      });
-    </script>
   </body>
 </html>
