@@ -952,7 +952,7 @@ nav {
     align-items: center;
     justify-content: center;
     gap: 4px;
-    background: rgba(119, 119, 119, 0.95);
+    background: rgba(0, 0, 0, 0.94);
     z-index: 1001;
     opacity: 0;
     visibility: hidden;
