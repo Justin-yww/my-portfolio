@@ -34,19 +34,43 @@
       content="Justin Yong, Software Engineering, Projects, Portfolio, AI, Hackathon, Malaysia"
     />
 
+    <link
+      rel="icon"
+      href="assets/img/favicon-32.png"
+      type="image/png"
+      sizes="32x32"
+    />
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <link
+      rel="preload"
+      href="assets/fonts/space-grotesk-latin-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/source-serif-4-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
     <!-- Navigation -->
     <nav>
       <div class="nav-container">
-        <a href="index.html" class="logo">JUSTIN YONG</a>
+        <a href="index.html" class="logo">
+          <img src="assets/img/img_logo.png" alt="" width="28" height="28" />
+          JUSTIN YONG
+        </a>
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="projects.html" class="active">Projects</a></li>
           <li><a href="gallery.html">Gallery</a></li>
           <li><a href="journey.html">Journey</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="index.html#contact">Connect</a></li>
         </ul>
         <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
           <span class="menu-icon"></span>
@@ -73,7 +97,14 @@
         <div class="projects-grid stagger-children">
           <!-- PROJECT #1-->
           <div class="project-card fade-in">
-            <div class="project-image">🧯</div>
+            <div class="project-image" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2c1 4 5 6 5 11a5 5 0 1 1-10 0c0-3 2-5 3-7 1 2 2 3 2 3V2z"
+                />
+                <path d="M9 16a3 3 0 0 0 6 0" />
+              </svg>
+            </div>
             <div class="project-content">
               <h3 class="project-title">
                 Safe Flame, Green Aim - <i>A Community Project</i>
@@ -102,7 +133,14 @@
 
           <!-- PROJECT #2 -->
           <div class="project-card fade-in">
-            <div class="project-image">🟩</div>
+            <div class="project-image" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                />
+                <path d="M8 9h8M8 13h5" />
+              </svg>
+            </div>
             <div class="project-content">
               <h3 class="project-title">
                 Grab Buddy - <i>An AI-Powered Merchant Assistant</i>
@@ -143,7 +181,14 @@
 
           <!-- PROJECT #3 -->
           <div class="project-card fade-in">
-            <div class="project-image">🚘</div>
+            <div class="project-image" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M5 17h14v-4l-2-5H7l-2 5v4z" />
+                <circle cx="7.5" cy="17" r="1.5" />
+                <circle cx="16.5" cy="17" r="1.5" />
+                <path d="M5 13h14" />
+              </svg>
+            </div>
             <div class="project-content">
               <h3 class="project-title">
                 DRIVESENSE - <i>An In-Car Display System</i>
@@ -179,16 +224,24 @@
 
           <!-- PROJECT #4 -->
           <div class="project-card fade-in">
-            <div class="project-image">🧑🏻‍🌾</div>
+            <div class="project-image" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 22c-4-2-7-6-7-11C5 5 12 2 12 2s7 3 7 9c0 5-3 9-7 11z"
+                />
+                <path d="M12 22V11" />
+              </svg>
+            </div>
             <div class="project-content">
               <h3 class="project-title">
                 NUTRIQUEST - <i>A Nutritional Educational Game</i>
               </h3>
               <p class="project-description">
-                A project developed during PRG 2104 Object-Oriented Programming course,
-                this educational game focuses on educating children about nutrition
-                within both the rural and urban context. The game includes learning sections 
-                and even a interactive drag-and-drop quiz to test the player's knowledge.
+                A project developed during PRG 2104 Object-Oriented Programming
+                course, this educational game focuses on educating children
+                about nutrition within both the rural and urban context. The
+                game includes learning sections and even a interactive
+                drag-and-drop quiz to test the player's knowledge.
               </p>
               <div class="project-meta">
                 <span class="project-tag">Scala</span>
@@ -213,16 +266,22 @@
 
           <!-- PROJECT #5 -->
           <div class="project-card fade-in">
-            <div class="project-image">📊</div>
+            <div class="project-image" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 19V5M4 19h16" />
+                <path d="M8 17V11M12 17V8M16 17v-5" />
+              </svg>
+            </div>
             <div class="project-content">
               <h3 class="project-title">
                 SEC13F SCREENER - <i>A SEC13F Dashboard</i>
               </h3>
               <p class="project-description">
-                A side project to scrape SEC13F Holdings's based on the CIK number 
-                provided by the user. The Streamlit dashboard shows the top 10 buys and 
-                sells by Institutional Investors and a list below of all activities to their 
-                portfolio between the latest two quarters. 
+                A side project to scrape SEC13F Holdings's based on the CIK
+                number provided by the user. The Streamlit dashboard shows the
+                top 10 buys and sells by Institutional Investors and a list
+                below of all activities to their portfolio between the latest
+                two quarters.
               </p>
               <div class="project-meta">
                 <span class="project-tag">Python</span>
@@ -239,8 +298,9 @@
               </div>
             </div>
           </div>
-
-          <!--Future project to be added here -->
+        </div>
+      </div>
+    </section>
 
     <!--JavaScript -->
     <script src="js/script.js"></script>

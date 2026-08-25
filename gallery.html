@@ -34,19 +34,43 @@
       content="Justin Yong, Personal Gallery, Events, Achievements, University Life, Malaysia"
     />
 
+    <link
+      rel="icon"
+      href="assets/img/favicon-32.png"
+      type="image/png"
+      sizes="32x32"
+    />
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <link
+      rel="preload"
+      href="assets/fonts/space-grotesk-latin-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/source-serif-4-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
     <!-- Navigation -->
     <nav>
       <div class="nav-container">
-        <a href="index.html" class="logo">JUSTIN YONG</a>
+        <a href="index.html" class="logo">
+          <img src="assets/img/img_logo.png" alt="" width="28" height="28" />
+          JUSTIN YONG
+        </a>
         <ul class="nav-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="gallery.html" class="active">Gallery</a></li>
           <li><a href="journey.html">Journey</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="index.html#contact">Connect</a></li>
         </ul>
         <button
           class="menu-toggle"
@@ -71,144 +95,307 @@
       </div>
     </section>
 
-    <!-- Full Gallery Section -->
+    <!-- Interactive Snap Gallery -->
     <section class="section gallery-page">
       <div class="container">
-        <!-- Events & Achievements -->
-        <div class="gallery-category fade-in">
-          <h2 class="category-title">Events & Achievements</h2>
-          <div class="gallery-grid">
-            <!-- Highlight #1 -->
-            <div class="gallery-item fade-in">
-              <img src="assets/img/img_JCF.jpeg" alt="JCF Awards Ceremony" />
-              <div class="gallery-overlay">
+        <div
+          class="gallery-filters fade-in"
+          role="group"
+          aria-label="Filter gallery"
+        >
+          <button
+            type="button"
+            class="gallery-filter is-active"
+            data-filter="all"
+            aria-pressed="true"
+          >
+            All
+          </button>
+          <button
+            type="button"
+            class="gallery-filter"
+            data-filter="milestones"
+            aria-pressed="false"
+          >
+            Milestones
+          </button>
+          <button
+            type="button"
+            class="gallery-filter"
+            data-filter="professional"
+            aria-pressed="false"
+          >
+            Professional Experiences
+          </button>
+          <button
+            type="button"
+            class="gallery-filter"
+            data-filter="university"
+            aria-pressed="false"
+          >
+            University Experiences
+          </button>
+          <button
+            type="button"
+            class="gallery-filter"
+            data-filter="side-projects"
+            aria-pressed="false"
+          >
+            Side Quests
+          </button>
+        </div>
+
+        <div class="gallery-carousel fade-in">
+          <button
+            type="button"
+            class="gallery-chevron gallery-chevron--prev"
+            aria-label="Previous photos"
+          >
+            ‹
+          </button>
+
+          <div class="gallery-track" tabindex="0" aria-label="Photo gallery">
+            <!-- Milestones -->
+            <article
+              class="gallery-card"
+              data-category="milestones"
+              data-title="JCF Awards Ceremony 2023"
+              data-description="Recipient of the prestigious Sunway-Lancaster Chancellor's Scholarship"
+            >
+              <img
+                src="assets/img/img_JCF.jpeg"
+                alt="JCF Awards Ceremony"
+                width="1200"
+                height="800"
+                loading="lazy"
+              />
+              <div class="gallery-card-caption">
                 <h3>JCF Awards Ceremony 2023</h3>
                 <p>
                   Recipient of the prestigious Sunway-Lancaster Chancellor's
                   Scholarship
                 </p>
               </div>
-            </div>
-            <!-- Highlight #2 -->
-            <div class="gallery-item fade-in">
+            </article>
+
+            <article
+              class="gallery-card"
+              data-category="milestones"
+              data-title="AppliedHE XChange 2024"
+              data-description="Panelist speaker for student panel discussion"
+            >
               <img
                 src="assets/img/img_AppliedHE.jpeg"
                 alt="AppliedHE XChange 2024"
+                width="1084"
+                height="724"
+                loading="lazy"
               />
-              <div class="gallery-overlay">
+              <div class="gallery-card-caption">
                 <h3>AppliedHE XChange 2024</h3>
                 <p>Panelist speaker for student panel discussion</p>
               </div>
-            </div>
-            <!-- Highlight #3 -->
-            <div class="gallery-item fade-in">
+            </article>
+
+            <article
+              class="gallery-card"
+              data-category="milestones"
+              data-title="ASEAN Mastercard Inclusive Growth Summit 2025"
+              data-description="Student delegate representing the university at the summit"
+            >
               <img
                 src="assets/img/img_MasterAIGS.JPG"
                 alt="ASEAN Mastercard Inclusive Growth Summit 2025"
+                width="1200"
+                height="800"
+                loading="lazy"
               />
-              <div class="gallery-overlay">
+              <div class="gallery-card-caption">
                 <h3>ASEAN Mastercard Inclusive Growth Summit 2025</h3>
                 <p>
                   Student delegate representing the university at the summit
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
+            </article>
 
-        <!-- University Life -->
-        <div class="gallery-category fade-in">
-          <h2 class="category-title">University Life</h2>
-          <div class="gallery-grid">
-            <!-- Item 1 -->
-            <div class="gallery-item fade-in">
+            <!-- University Life -->
+            <article
+              class="gallery-card"
+              data-category="university"
+              data-title="SunFest 2025"
+              data-description="An initiative that raised RM 12,000 for community projects and women's welfare"
+            >
               <img
                 src="assets/img/img_SunFest.jpeg"
                 alt="SunFest Opening Ceremony"
+                width="1200"
+                height="800"
+                loading="lazy"
               />
-              <div class="gallery-overlay">
+              <div class="gallery-card-caption">
                 <h3>SunFest 2025</h3>
                 <p>
                   An initiative that raised RM 12,000 for community projects and
                   women's welfare
                 </p>
               </div>
-            </div>
-            <!-- Item 2 -->
-            <div class="gallery-item fade-in">
-              <img src="assets/img/img_MoonFest.jpeg" alt="MoonFest 2025" />
-              <div class="gallery-overlay">
+            </article>
+
+            <article
+              class="gallery-card"
+              data-category="university"
+              data-title="MoonFest"
+              data-description="The grand finale to SunFest 2025"
+            >
+              <img
+                src="assets/img/img_MoonFest.jpeg"
+                alt="MoonFest 2025"
+                width="1200"
+                height="800"
+                loading="lazy"
+              />
+              <div class="gallery-card-caption">
                 <h3>MoonFest</h3>
                 <p>The grand finale to SunFest 2025</p>
               </div>
-            </div>
-            <!-- Item 3 -->
-            <div class="gallery-item fade-in">
+            </article>
+
+            <article
+              class="gallery-card"
+              data-category="university"
+              data-title="Sunway Tech Club"
+              data-description="A vibrant community for students who are passionate about technology and innovation"
+            >
               <img
                 src="assets/img/img_STC.jpeg"
                 alt="Sunway Tech Club Onboarding"
+                width="1200"
+                height="800"
+                loading="lazy"
               />
-              <div class="gallery-overlay">
+              <div class="gallery-card-caption">
                 <h3>Sunway Tech Club</h3>
                 <p>
                   A vibrant community for students who are passionate about
                   technology and innovation
                 </p>
               </div>
-            </div>
-            <!-- Item 4 -->
-            <div class="gallery-item fade-in">
+            </article>
+
+            <article
+              class="gallery-card"
+              data-category="university"
+              data-title="Talent Orbit 2025"
+              data-description="A 2-day venture capital and technology event for students to connect on ideas and solutions"
+            >
               <img
                 src="assets/img/img_talentorbit2025.jpeg"
                 alt="Talent Orbit 2025"
+                width="1600"
+                height="1066"
+                loading="lazy"
               />
-              <div class="gallery-overlay">
+              <div class="gallery-card-caption">
                 <h3>Talent Orbit 2025</h3>
                 <p>
                   A 2-day venture capital and technology event for students to
                   connect on ideas and solutions
                 </p>
               </div>
-            </div>
-            <!-- Item 5 -->
-            <div class="gallery-item fade-in">
+            </article>
+
+            <article
+              class="gallery-card"
+              data-category="university"
+              data-title="Mastercard Inclusive Growth Summit 2025"
+              data-description="Held in conjunction with the ASEAN Summit 2025 in Malaysia, the summit brought together leaders from across the region"
+            >
               <img
                 src="assets/img/img_MastercardAIGS.jpg"
                 alt="Mastercard Inclusive Growth Summit 2025"
+                width="1200"
+                height="800"
+                loading="lazy"
               />
-              <div class="gallery-overlay">
+              <div class="gallery-card-caption">
                 <h3>Mastercard Inclusive Growth Summit 2025</h3>
                 <p>
-                  Held in conjuntion with the ASEAN Summit 2025 in Malaysia, the
-                  summit brought together leaders from across the region
+                  Held in conjunction with the ASEAN Summit 2025 in Malaysia,
+                  the summit brought together leaders from across the region
                 </p>
               </div>
-            </div>
-            <!-- Item 6 -->
-            <div class="gallery-item fade-in">
+            </article>
+
+            <article
+              class="gallery-card"
+              data-category="university"
+              data-title="MUSA Elections 2025"
+              data-description="Oversaw Monash University Student Association (MUSA)'s 2025 as Returning Officer"
+            >
               <img
                 src="assets/img/img_musaelections2025.jpg"
                 alt="MUSA Elections 2025"
+                width="1600"
+                height="900"
+                loading="lazy"
               />
-              <div class="gallery-overlay">
+              <div class="gallery-card-caption">
                 <h3>MUSA Elections 2025</h3>
                 <p>
                   Oversaw Monash University Student Association (MUSA)'s 2025 as
                   Returning Officer
                 </p>
               </div>
-            </div>
-            <!-- Entry point for new pictures -->
+            </article>
           </div>
+
+          <button
+            type="button"
+            class="gallery-chevron gallery-chevron--next"
+            aria-label="Next photos"
+          >
+            ›
+          </button>
         </div>
+
+        <p class="gallery-empty" hidden>Photos coming soon</p>
       </div>
     </section>
 
-    <!-- Image Modal for Full View -->
-    <div id="imageModal" class="modal">
-      <span class="close">&times;</span>
-      <img class="modal-content" id="modalImage" />
-      <div id="caption"></div>
+    <!-- Fullscreen Lightbox -->
+    <div
+      id="imageModal"
+      class="modal lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="lightboxTitle"
+      hidden
+    >
+      <button type="button" class="close lightbox-close" aria-label="Close">
+        &times;
+      </button>
+      <button
+        type="button"
+        class="lightbox-nav lightbox-prev"
+        aria-label="Previous photo"
+      >
+        ‹
+      </button>
+      <button
+        type="button"
+        class="lightbox-nav lightbox-next"
+        aria-label="Next photo"
+      >
+        ›
+      </button>
+      <div class="lightbox-stage">
+        <img class="modal-content" id="modalImage" alt="" />
+        <div class="lightbox-meta">
+          <p class="lightbox-counter" id="lightboxCounter"></p>
+          <h3 id="lightboxTitle"></h3>
+          <p id="lightboxDescription"></p>
+        </div>
+      </div>
     </div>
 
     <!--JavaScript -->

@@ -53,16 +53,40 @@
     <meta name="author" content="Justin Yong Wenn Weii" />
     <meta
       name="keywords"
-      content="Justin Yong, Software Engineering, Portfolio, Sunway University, AI, Projects, Malaysia"
+      content="Justin Yong, Software Engineering Graduate, Personal Portfolio, Sunway University, Lancaster University, AI, Projects, Malaysia"
     />
 
+    <link
+      rel="icon"
+      href="assets/img/favicon-32.png"
+      type="image/png"
+      sizes="32x32"
+    />
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <link
+      rel="preload"
+      href="assets/fonts/space-grotesk-latin-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/source-serif-4-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
     <!-- Navigation -->
     <nav>
       <div class="nav-container">
-        <a href="#home" class="logo">JUSTIN YONG</a>
+        <a href="#home" class="logo">
+          <img src="assets/img/img_logo.png" alt="" width="28" height="28" />
+          JUSTIN YONG
+        </a>
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
           <li><a href="projects.html">Projects</a></li>
@@ -87,11 +111,11 @@
           <div class="hero-text">
             <h1>About Me</h1>
             <p class="hero-subtitle">
-              Leadership • Strategy • Project Management
+              Leadership • Strategy • Data Engineering
             </p>
             <p class="hero-description">
-              Welcome! I'm Justin Yong, a software engineering student at Sunway
-              University, Malaysia. This e-portfolio showcases my professional
+              Welcome! I'm Justin Yong, a Software Engineering Graduate from Sunway
+              University (Malaysia). This e-portfolio showcases my professional
               journey through a blend of technical projects and personal
               milestones, alongside a space for creative explorations.
             </p>
@@ -102,6 +126,8 @@
               src="assets/img/profile.jpeg"
               alt="Justin Yong Picture"
               class="profile-picture"
+              width="280"
+              height="280"
             />
           </div>
         </div>
@@ -119,7 +145,14 @@
         <div class="projects-grid stagger-children">
           <!-- PROJECT #1-->
           <div class="project-card fade-in">
-            <div class="project-image">🧯</div>
+            <div class="project-image" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2c1 4 5 6 5 11a5 5 0 1 1-10 0c0-3 2-5 3-7 1 2 2 3 2 3V2z"
+                />
+                <path d="M9 16a3 3 0 0 0 6 0" />
+              </svg>
+            </div>
             <div class="project-content">
               <h3 class="project-title">
                 Safe Flame, Green Aim - <i>A Community Project</i>
@@ -144,7 +177,14 @@
 
           <!-- PROJECT #2 -->
           <div class="project-card fade-in">
-            <div class="project-image">🟩</div>
+            <div class="project-image" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                />
+                <path d="M8 9h8M8 13h5" />
+              </svg>
+            </div>
             <div class="project-content">
               <h3 class="project-title">
                 Grab Buddy - <i>An AI-Powered Merchant Assistant</i>
@@ -180,7 +220,14 @@
 
           <!-- PROJECT #3 -->
           <div class="project-card fade-in">
-            <div class="project-image">🚘</div>
+            <div class="project-image" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M5 17h14v-4l-2-5H7l-2 5v4z" />
+                <circle cx="7.5" cy="17" r="1.5" />
+                <circle cx="16.5" cy="17" r="1.5" />
+                <path d="M5 13h14" />
+              </svg>
+            </div>
             <div class="project-content">
               <h3 class="project-title">
                 DRIVESENSE - <i>An In-Car Display System</i>
@@ -211,16 +258,22 @@
 
           <!-- PROJECT #4 -->
           <div class="project-card fade-in">
-            <div class="project-image">📊</div>
+            <div class="project-image" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 19V5M4 19h16" />
+                <path d="M8 17V11M12 17V8M16 17v-5" />
+              </svg>
+            </div>
             <div class="project-content">
               <h3 class="project-title">
                 SEC13F SCREENER - <i>A SEC13F Dashboard</i>
               </h3>
               <p class="project-description">
-                A side project to scrape SEC13F Holdings's based on the CIK number 
-                provided by the user. The Streamlit dashboard shows the top 10 buys and 
-                sells by Institutional Investors and a list below of all activities to their 
-                portfolio between the latest two quarters.  
+                A side project to scrape SEC13F Holdings's based on the CIK
+                number provided by the user. The Streamlit dashboard shows the
+                top 10 buys and sells by Institutional Investors and a list
+                below of all activities to their portfolio between the latest
+                two quarters.
               </p>
               <div class="project-links">
                 <a
@@ -249,84 +302,131 @@
           A glimpse into my personal events and achievements.
         </p>
 
-        <div class="gallery-grid">
-          <div class="gallery-item fade-in">
+        <div class="gallery-preview-track fade-in">
+          <a href="gallery.html" class="gallery-card">
             <img
               src="assets/img/img_AppliedHE.jpeg"
               alt="AppliedHE XChange 2024"
+              width="1084"
+              height="724"
+              loading="lazy"
             />
-            <div class="gallery-overlay">
+            <div class="gallery-card-caption">
               <h3>AppliedHE XChange 2024</h3>
               <p>Panelist speaker for student panel discussion</p>
             </div>
-          </div>
-          <div class="gallery-item fade-in">
+          </a>
+          <a href="gallery.html" class="gallery-card">
             <img
               src="assets/img/img_SunFest.jpeg"
               alt="SunFest Opening Ceremony"
+              width="1200"
+              height="800"
+              loading="lazy"
             />
-            <div class="gallery-overlay">
+            <div class="gallery-card-caption">
               <h3>SunFest 2025</h3>
               <p>
                 An initiative that raised RM 12,000 for the Sunway Desa Mentari
                 community and Tenaganita
               </p>
             </div>
-          </div>
-          <div class="gallery-item fade-in">
+          </a>
+          <a href="gallery.html" class="gallery-card">
             <img
               src="assets/img/img_MasterAIGS.JPG"
               alt="ASEAN Mastercard Inclusive Growth Summit 2025"
+              width="1200"
+              height="800"
+              loading="lazy"
             />
-            <div class="gallery-overlay">
+            <div class="gallery-card-caption">
               <h3>ASEAN Mastercard Inclusive Growth Summit 2025</h3>
               <p>Student delegate representing the university at the summit</p>
             </div>
-          </div>
+          </a>
+        </div>
+
+        <div class="section-cta fade-in">
+          <a href="gallery.html" class="text-link">View full gallery</a>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
+    <!-- Footer / Connect -->
+    <footer id="contact" class="site-footer">
       <div class="container">
-        <div class="contact-content">
-          <h2 class="section-title fade-in">Let's Connect</h2>
-          <p class="section-subtitle fade-in">
-            Ready to explore new opportunities and collaborations? Just drop me
-            a message and we can discuss how we can work together. Be it a cool
-            project or career opportunities I would love to hear from you!
-          </p>
+        <div class="footer-top fade-in">
+          <div class="footer-intro">
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="section-subtitle">
+              Ready to explore new opportunities and collaborations? Drop me a
+              message — whether it's a project or a career conversation.
+            </p>
+          </div>
 
-          <div class="contact-info">
-            <div class="contact-item fade-in">
-              <div class="icon">
-                <img src="assets/icons/LinkedIn.svg" alt="LinkedIn Icon" />
-              </div>
-              <a
-                href="https://www.linkedin.com/in/justinyongww/"
-                target="_blank"
-                >View LinkedIn Profile</a
-              >
-            </div>
-            <div class="contact-item fade-in">
-              <div class="icon">
-                <img src="assets/icons/Email.svg" alt="Email Icon" />
-              </div>
-              <a href="mailto:justinyww@gmail.com">Send Email</a>
-            </div>
-            <div class="contact-item fade-in">
-              <div class="icon">
-                <img src="assets/icons/Github.svg" alt="GitHub Icon" />
-              </div>
-              <a href="https://github.com/Justin-yww" target="_blank"
-                >GitHub Profile</a
-              >
-            </div>
+          <div class="footer-col">
+            <h4>Pages</h4>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="journey.html">Journey</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <ul>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/justinyongww/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >LinkedIn</a
+                >
+              </li>
+              <li>
+                <a href="mailto:justinyww@gmail.com">Email</a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/Justin-yww"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >GitHub</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="footer-copy">&copy; 2026 Justin Yong</p>
+          <div class="footer-social">
+            <a
+              href="https://www.linkedin.com/in/justinyongww/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <img src="assets/icons/LinkedIn.svg" alt="" />
+            </a>
+            <a href="mailto:justinyww@gmail.com" aria-label="Email">
+              <img src="assets/icons/Email.svg" alt="" />
+            </a>
+            <a
+              href="https://github.com/Justin-yww"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <img src="assets/icons/Github.svg" alt="" />
+            </a>
           </div>
         </div>
       </div>
-    </section>
+    </footer>
 
     <!--JavaScript -->
     <script src="js/script.js"></script>

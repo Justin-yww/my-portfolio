@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.classList.toggle("menu-open", isOpen);
     });
 
-    // Close menu when a link is clicked
     navLinks.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", function () {
         navLinks.classList.remove("open");
@@ -47,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    // Close menu on Escape key
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && navLinks.classList.contains("open")) {
         navLinks.classList.remove("open");
@@ -84,57 +82,247 @@ document.addEventListener("DOMContentLoaded", function () {
       observer.observe(el);
     });
   } else {
-    // If reduced motion is preferred, show everything immediately
     document.querySelectorAll(".fade-in").forEach((el) => {
       el.classList.add("visible");
     });
   }
 
-  // Gallery item click - open modal if on gallery page
-  document.querySelectorAll(".gallery-item").forEach((item) => {
-    item.addEventListener("click", () => {
-      const img = item.querySelector("img");
-      const modal = document.getElementById("imageModal");
-      if (modal && img) {
-        const modalImg = document.getElementById("modalImage");
-        const captionText = document.getElementById("caption");
+  // ----- Interactive snap gallery -----
+  const track = document.querySelector(".gallery-track");
+  const filterButtons = document.querySelectorAll(".gallery-filter");
+  const modal = document.getElementById("imageModal");
+
+  function getVisibleCards() {
+    if (!track) return [];
+    return Array.from(track.querySelectorAll(".gallery-card")).filter(
+      (card) => !card.classList.contains("is-hidden")
+    );
+  }
+
+  function getCardStep() {
+    if (!track) return 340;
+    const card = track.querySelector(".gallery-card:not(.is-hidden)");
+    if (!card) return 340;
+    const styles = window.getComputedStyle(track);
+    const gap = parseFloat(styles.columnGap || styles.gap) || 20;
+    return card.getBoundingClientRect().width + gap;
+  }
+
+  // Filters
+  if (filterButtons.length && track) {
+    const emptyEl = document.querySelector(".gallery-empty");
+    const carouselEl = document.querySelector(".gallery-carousel");
+
+    function updateEmptyState() {
+      const hasVisible = getVisibleCards().length > 0;
+      if (emptyEl) {
+        emptyEl.hidden = hasVisible;
+      }
+      if (carouselEl) {
+        carouselEl.classList.toggle("is-empty", !hasVisible);
+      }
+    }
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const filter = btn.dataset.filter;
+
+        filterButtons.forEach((b) => {
+          b.classList.toggle("is-active", b === btn);
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+        });
+
+        track.querySelectorAll(".gallery-card").forEach((card) => {
+          const match =
+            filter === "all" || card.dataset.category === filter;
+          card.classList.toggle("is-hidden", !match);
+        });
+
+        track.scrollTo({
+          left: 0,
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+        });
+        updateEmptyState();
+      });
+    });
+  }
+
+  // Desktop drag-to-scroll
+  if (track) {
+    let isPointerDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    let moved = false;
+    let suppressClick = false;
+
+    track.addEventListener("pointerdown", (e) => {
+      if (e.pointerType === "touch") return;
+      isPointerDown = true;
+      moved = false;
+      startX = e.clientX;
+      scrollLeft = track.scrollLeft;
+      track.classList.add("is-dragging");
+      track.setPointerCapture(e.pointerId);
+    });
+
+    track.addEventListener("pointermove", (e) => {
+      if (!isPointerDown) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 4) moved = true;
+      track.scrollLeft = scrollLeft - dx;
+    });
+
+    function endDrag(e) {
+      if (!isPointerDown) return;
+      isPointerDown = false;
+      track.classList.remove("is-dragging");
+      if (moved) {
+        suppressClick = true;
+        setTimeout(() => {
+          suppressClick = false;
+        }, 0);
+      }
+      try {
+        track.releasePointerCapture(e.pointerId);
+      } catch (_) {
+        /* ignore */
+      }
+    }
+
+    track.addEventListener("pointerup", endDrag);
+    track.addEventListener("pointercancel", endDrag);
+
+    // Chevrons
+    const prevBtn = document.querySelector(".gallery-chevron--prev");
+    const nextBtn = document.querySelector(".gallery-chevron--next");
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        track.scrollBy({
+          left: -getCardStep(),
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+        });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        track.scrollBy({
+          left: getCardStep(),
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+        });
+      });
+    }
+
+    // ----- Lightbox -----
+    if (modal) {
+      const modalImg = document.getElementById("modalImage");
+      const titleEl = document.getElementById("lightboxTitle");
+      const descEl = document.getElementById("lightboxDescription");
+      const counterEl = document.getElementById("lightboxCounter");
+      const closeBtn = modal.querySelector(".lightbox-close, .close");
+      const prevNav = modal.querySelector(".lightbox-prev");
+      const nextNav = modal.querySelector(".lightbox-next");
+
+      let currentIndex = 0;
+      let lastFocus = null;
+      let touchStartX = 0;
+
+      function openLightbox(index) {
+        const cards = getVisibleCards();
+        if (!cards.length) return;
+        currentIndex = ((index % cards.length) + cards.length) % cards.length;
+        const card = cards[currentIndex];
+        const img = card.querySelector("img");
+
+        lastFocus = document.activeElement;
+        modal.hidden = false;
         modal.style.display = "block";
-        // Trigger reflow for transition
         modal.offsetHeight;
         modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+
         modalImg.src = img.src;
-        captionText.innerHTML = img.alt;
+        modalImg.alt = img.alt || card.dataset.title || "";
+        titleEl.textContent = card.dataset.title || img.alt || "";
+        descEl.textContent = card.dataset.description || "";
+        counterEl.textContent = `${currentIndex + 1} / ${cards.length}`;
+
+        (closeBtn || modal).focus?.();
       }
-    });
-  });
 
-  // Modal close functionality
-  const modal = document.getElementById("imageModal");
-  if (modal) {
-    const closeBtn = modal.querySelector(".close");
+      function closeLightbox() {
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+        setTimeout(() => {
+          modal.style.display = "none";
+          modal.hidden = true;
+          modalImg.removeAttribute("src");
+        }, 300);
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }
 
-    function closeModal() {
-      modal.classList.remove("active");
-      setTimeout(() => {
-        modal.style.display = "none";
-      }, 300);
+      function showNext(delta) {
+        const cards = getVisibleCards();
+        if (!cards.length) return;
+        openLightbox(currentIndex + delta);
+      }
+
+      track.querySelectorAll(".gallery-card").forEach((card) => {
+        card.setAttribute("tabindex", "0");
+        card.setAttribute("role", "button");
+
+        const activate = () => {
+          if (suppressClick) return;
+          const cards = getVisibleCards();
+          const index = cards.indexOf(card);
+          if (index >= 0) openLightbox(index);
+        };
+
+        card.addEventListener("click", activate);
+        card.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            activate();
+          }
+        });
+      });
+
+      if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
+      if (prevNav) prevNav.addEventListener("click", () => showNext(-1));
+      if (nextNav) nextNav.addEventListener("click", () => showNext(1));
+
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeLightbox();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (!modal.classList.contains("active")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowLeft") showNext(-1);
+        if (e.key === "ArrowRight") showNext(1);
+      });
+
+      // Touch swipe in lightbox
+      modal.addEventListener(
+        "touchstart",
+        (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        },
+        { passive: true }
+      );
+
+      modal.addEventListener(
+        "touchend",
+        (e) => {
+          if (!modal.classList.contains("active")) return;
+          const dx = e.changedTouches[0].screenX - touchStartX;
+          if (Math.abs(dx) < 50) return;
+          showNext(dx < 0 ? 1 : -1);
+        },
+        { passive: true }
+      );
     }
-
-    if (closeBtn) {
-      closeBtn.addEventListener("click", closeModal);
-    }
-
-    modal.addEventListener("click", function (e) {
-      if (e.target === modal) {
-        closeModal();
-      }
-    });
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && modal.style.display === "block") {
-        closeModal();
-      }
-    });
   }
 
   // Page load animation
