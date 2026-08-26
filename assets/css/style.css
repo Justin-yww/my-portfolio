@@ -567,26 +567,57 @@ nav {
   flex-wrap: wrap;
 }
 
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes project-link-ring {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
 .project-link {
   padding: 8px 16px;
-  background: transparent;
-  border: 1px solid var(--border-secondary);
+  background:
+    linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+    conic-gradient(
+      from var(--border-angle),
+      #2de2ac,
+      #00a3ff,
+      #7000ff,
+      #2de2ac
+    )
+    border-box;
+  border: 1.5px solid transparent;
   border-radius: var(--radius-full);
+  box-shadow: 0 0 0 3px rgba(0, 163, 255, 0.12);
   text-decoration: none;
   color: var(--text-primary);
   font-size: 0.8rem;
   font-weight: 500;
   font-family: "Space Grotesk", system-ui, sans-serif;
+  animation: project-link-ring 3s linear infinite;
   transition:
     color 0.2s var(--ease-out),
-    border-color 0.2s var(--ease-out),
-    background 0.2s var(--ease-out);
+    box-shadow 0.2s var(--ease-out);
 }
 
 .project-link:hover {
   color: #fff;
-  border-color: var(--accent-blue);
-  background: var(--accent-blue);
+  background:
+    linear-gradient(var(--accent-blue), var(--accent-blue)) padding-box,
+    conic-gradient(
+      from var(--border-angle),
+      #2de2ac,
+      #00a3ff,
+      #7000ff,
+      #2de2ac
+    )
+    border-box;
+  box-shadow: 0 0 0 3px rgba(112, 0, 255, 0.12);
 }
 
 /* ===== GALLERY SECTION ===== */
