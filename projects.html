@@ -202,9 +202,9 @@
               </div>
               <div class="project-links">
                 <a
-                  href="https://drive.google.com/file/d/13zEPLZ-on0S8-t7wwCOgy5vYYlDLPk1t/view?usp=sharing"
-                  class="project-link"
-                  target="_blank"
+                  href="assets/pdfs/safe_flame_green_aim.pdf"
+                  class="project-link js-pdf-preview"
+                  data-pdf-title="Safe Flame, Green Aim Slide Deck"
                   >Slide Deck</a
                 >
               </div>
@@ -238,9 +238,9 @@
               </div>
               <div class="project-links">
                 <a
-                  href="https://drive.google.com/file/d/1s7t_8p9_jUbn3No4FTUxnExDo3XB-oJP/view?usp=drive_link"
-                  class="project-link"
-                  target="_blank"
+                  href="assets/pdfs/grab_buddy.pdf"
+                  class="project-link js-pdf-preview"
+                  data-pdf-title="GrabBuddy Pitch Deck"
                   >Pitch Deck</a
                 >
                 <a
@@ -330,9 +330,9 @@
               </div>
               <div class="project-links">
                 <a
-                  href="https://drive.google.com/file/d/1sEDAnEhJKlMCyBeIC5MAQgEg4euEsMK9/view?usp=sharing"
-                  class="project-link"
-                  target="_blank"
+                  href="assets/pdfs/nutriquest.pdf"
+                  class="project-link js-pdf-preview"
+                  data-pdf-title="NutriQuest Pitch Deck"
                   >Pitch Deck</a
                 >
                 <a
@@ -383,6 +383,34 @@
         </div>
       </div>
     </section>
+
+    <!-- PDF Preview Modal -->
+    <div
+      id="pdfModal"
+      class="modal pdf-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="pdfModalTitle"
+      hidden
+    >
+      <div class="pdf-modal-toolbar">
+        <h2 id="pdfModalTitle" class="pdf-modal-title"></h2>
+        <div class="pdf-modal-actions">
+          <a
+            id="pdfOpenTab"
+            class="pdf-open-tab"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            >Open in new tab</a
+          >
+          <button type="button" class="pdf-modal-close" aria-label="Close">
+            &times;
+          </button>
+        </div>
+      </div>
+      <iframe id="pdfFrame" class="pdf-frame" title="PDF preview"></iframe>
+    </div>
 
     <!--JavaScript -->
     <script src="js/script.js"></script>

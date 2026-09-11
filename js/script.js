@@ -325,6 +325,66 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // ----- PDF preview modal -----
+  const pdfModal = document.getElementById("pdfModal");
+  const pdfTriggers = document.querySelectorAll(".js-pdf-preview");
+
+  if (pdfModal && pdfTriggers.length) {
+    const pdfFrame = document.getElementById("pdfFrame");
+    const pdfTitle = document.getElementById("pdfModalTitle");
+    const pdfOpenTab = document.getElementById("pdfOpenTab");
+    const pdfCloseBtn = pdfModal.querySelector(".pdf-modal-close");
+    let pdfLastFocus = null;
+
+    function openPdfModal(url, title) {
+      pdfLastFocus = document.activeElement;
+      if (pdfTitle) pdfTitle.textContent = title || "PDF preview";
+      if (pdfOpenTab) pdfOpenTab.href = url;
+      if (pdfFrame) {
+        pdfFrame.src = url;
+        pdfFrame.title = title || "PDF preview";
+      }
+
+      pdfModal.hidden = false;
+      pdfModal.style.display = "flex";
+      pdfModal.offsetHeight;
+      pdfModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+      (pdfCloseBtn || pdfModal).focus?.();
+    }
+
+    function closePdfModal() {
+      pdfModal.classList.remove("active");
+      document.body.style.overflow = "";
+      setTimeout(() => {
+        pdfModal.style.display = "none";
+        pdfModal.hidden = true;
+        if (pdfFrame) pdfFrame.removeAttribute("src");
+      }, 300);
+      if (pdfLastFocus && pdfLastFocus.focus) pdfLastFocus.focus();
+    }
+
+    pdfTriggers.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const url = link.getAttribute("href");
+        if (!url) return;
+        openPdfModal(url, link.dataset.pdfTitle || link.textContent.trim());
+      });
+    });
+
+    if (pdfCloseBtn) pdfCloseBtn.addEventListener("click", closePdfModal);
+
+    pdfModal.addEventListener("click", (e) => {
+      if (e.target === pdfModal) closePdfModal();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (!pdfModal.classList.contains("active")) return;
+      if (e.key === "Escape") closePdfModal();
+    });
+  }
+
   // Page load animation
   window.addEventListener("load", () => {
     document.body.classList.add("loaded");

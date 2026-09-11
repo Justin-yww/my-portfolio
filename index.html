@@ -258,9 +258,9 @@
               </p>
               <div class="project-links">
                 <a
-                  href="https://drive.google.com/file/d/1s7t_8p9_jUbn3No4FTUxnExDo3XB-oJP/view?usp=drive_link"
-                  class="project-link"
-                  target="_blank"
+                  href="assets/pdfs/grab_buddy.pdf"
+                  class="project-link js-pdf-preview"
+                  data-pdf-title="GrabBuddy Pitch Deck"
                   >Pitch Deck</a
                 >
                 <a
@@ -426,6 +426,34 @@
         </div>
       </div>
     </footer>
+
+    <!-- PDF Preview Modal -->
+    <div
+      id="pdfModal"
+      class="modal pdf-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="pdfModalTitle"
+      hidden
+    >
+      <div class="pdf-modal-toolbar">
+        <h2 id="pdfModalTitle" class="pdf-modal-title"></h2>
+        <div class="pdf-modal-actions">
+          <a
+            id="pdfOpenTab"
+            class="pdf-open-tab"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            >Open in new tab</a
+          >
+          <button type="button" class="pdf-modal-close" aria-label="Close">
+            &times;
+          </button>
+        </div>
+      </div>
+      <iframe id="pdfFrame" class="pdf-frame" title="PDF preview"></iframe>
+    </div>
 
     <!--JavaScript -->
     <script src="js/script.js"></script>
