@@ -140,6 +140,10 @@ h6 {
   border-top: 1px solid var(--border-primary);
 }
 
+#projects.section {
+  padding-top: 56px;
+}
+
 .section-title {
   font-family: "Space Grotesk", system-ui, sans-serif;
   font-size: clamp(2rem, 5vw, 2.75rem);
@@ -336,15 +340,25 @@ nav {
 
 /* ===== HERO SECTION ===== */
 .hero {
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
   background: var(--bg-primary);
   position: relative;
   overflow: hidden;
   padding-top: 56px;
+  padding-bottom: 8px;
   border-top: none;
+}
+
+.hero > .container {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-top: clamp(64px, 8vh, 96px);
 }
 
 .hero-content {
@@ -446,6 +460,119 @@ nav {
 
 .cta-button:active {
   transform: translateY(0);
+}
+
+/* ===== HERO PROFESSIONAL EXPERIENCES ===== */
+.hero-experience {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 40px 0 0;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+.hero-experience-label {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: clamp(0.75rem, 1.4vw, 0.85rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  text-align: center;
+  margin-bottom: 16px;
+  padding: 0 24px;
+}
+
+.hero-experience-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+.hero-experience-track {
+  display: flex;
+  width: max-content;
+  animation: experience-marquee 32s linear infinite;
+}
+
+.hero-experience-group {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  padding-right: 64px;
+  flex-shrink: 0;
+}
+
+.hero-experience-marquee:hover .hero-experience-track,
+.hero-experience-marquee:focus-within .hero-experience-track {
+  animation-play-state: paused;
+}
+
+@keyframes experience-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.experience-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  min-width: 120px;
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.experience-logo-img {
+  display: block;
+  width: 180px;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.45;
+  filter: grayscale(1) brightness(0) saturate(100%) invert(27%) sepia(98%)
+    saturate(4000%) hue-rotate(220deg) brightness(0.95);
+  transition:
+    opacity 0.25s var(--ease-out),
+    filter 0.25s var(--ease-out);
+}
+
+.experience-logo:hover .experience-logo-img,
+.experience-logo:focus-visible .experience-logo-img {
+  opacity: 0.9;
+}
+
+.experience-logo:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 6px;
+  border-radius: var(--radius-sm);
+}
+
+.experience-logo-role {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-tertiary);
+  letter-spacing: 0.01em;
 }
 
 .text-link {
@@ -1392,6 +1519,7 @@ nav {
     flex-direction: column;
     text-align: center;
     gap: 48px;
+    padding-bottom: 24px;
   }
 
   .hero-image {
@@ -1410,6 +1538,23 @@ nav {
 
   .hero-subtitle {
     text-align: center;
+  }
+
+  .hero-experience {
+    padding: 32px 0 0;
+  }
+
+  .hero-experience-group {
+    gap: 48px;
+    padding-right: 48px;
+  }
+
+  .experience-logo {
+    min-width: 200px;
+  }
+
+  .experience-logo-img {
+    width: 200px;
   }
 
   .section-title,
@@ -1742,6 +1887,32 @@ body.loaded {
   .gallery-card:hover,
   .gallery-card:focus-visible {
     transform: none;
+  }
+
+  .hero-experience-track {
+    animation: none;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .hero-experience-group {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px 40px;
+    padding-right: 0;
+  }
+
+  .hero-experience-group[aria-hidden="true"] {
+    display: none;
+  }
+
+  .hero-experience-marquee {
+    mask-image: none;
+    -webkit-mask-image: none;
   }
 }
 

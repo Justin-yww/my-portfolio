@@ -62,6 +62,90 @@ document.addEventListener("DOMContentLoaded", function () {
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
+  // Hero experience marquee — fill viewport, then duplicate for a seamless loop
+  const experienceTrack = document.querySelector(".hero-experience-track");
+  const experienceGroup = experienceTrack?.querySelector(
+    ".hero-experience-group"
+  );
+
+  if (experienceTrack && experienceGroup && !prefersReducedMotion) {
+    const baseLogos = Array.from(experienceGroup.children).map((node) =>
+      node.cloneNode(true)
+    );
+
+    function cloneLogo(node) {
+      const clone = node.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      clone.setAttribute("tabindex", "-1");
+      clone.removeAttribute("aria-label");
+      return clone;
+    }
+
+    function buildMarquee() {
+      experienceTrack
+        .querySelectorAll(".hero-experience-group")
+        .forEach((group, index) => {
+          if (index > 0) group.remove();
+        });
+
+      experienceGroup.replaceChildren(
+        ...baseLogos.map((node) => node.cloneNode(true))
+      );
+
+      let guard = 0;
+      while (experienceGroup.scrollWidth < window.innerWidth && guard < 12) {
+        baseLogos.forEach((logo) => {
+          experienceGroup.appendChild(cloneLogo(logo));
+        });
+        guard += 1;
+      }
+
+      // Extra set so the seam never exposes empty space on wide screens
+      baseLogos.forEach((logo) => {
+        experienceGroup.appendChild(cloneLogo(logo));
+      });
+
+      const duplicate = experienceGroup.cloneNode(true);
+      duplicate.setAttribute("aria-hidden", "true");
+      duplicate.querySelectorAll("a").forEach((anchor) => {
+        anchor.setAttribute("tabindex", "-1");
+        anchor.removeAttribute("aria-label");
+      });
+      experienceTrack.appendChild(duplicate);
+
+      const duration = Math.max(20, experienceGroup.scrollWidth / 50);
+      experienceTrack.style.animationDuration = `${duration}s`;
+    }
+
+    function whenImagesReady(callback) {
+      const imgs = Array.from(experienceGroup.querySelectorAll("img"));
+      if (!imgs.length) {
+        callback();
+        return;
+      }
+      let remaining = imgs.length;
+      const done = () => {
+        remaining -= 1;
+        if (remaining <= 0) callback();
+      };
+      imgs.forEach((img) => {
+        if (img.complete) done();
+        else {
+          img.addEventListener("load", done, { once: true });
+          img.addEventListener("error", done, { once: true });
+        }
+      });
+    }
+
+    whenImagesReady(buildMarquee);
+
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(buildMarquee, 150);
+    });
+  }
+
   if (!prefersReducedMotion) {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -322,6 +406,38 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         { passive: true }
       );
+
+      // Deep-link: open lightbox for gallery.html#card-id
+      function openFromHash() {
+        const id = location.hash.slice(1);
+        if (!id) return;
+
+        const target = document.getElementById(id);
+        if (!target || !target.classList.contains("gallery-card")) return;
+
+        const allFilter = document.querySelector(
+          '.gallery-filter[data-filter="all"]'
+        );
+        if (allFilter && !allFilter.classList.contains("is-active")) {
+          allFilter.click();
+        }
+
+        target.classList.remove("is-hidden");
+        target.scrollIntoView({
+          behavior: prefersReducedMotion ? "auto" : "smooth",
+          inline: "center",
+          block: "nearest",
+        });
+
+        const cards = getVisibleCards();
+        const index = cards.indexOf(target);
+        if (index >= 0) {
+          requestAnimationFrame(() => openLightbox(index));
+        }
+      }
+
+      openFromHash();
+      window.addEventListener("hashchange", openFromHash);
     }
   }
 
