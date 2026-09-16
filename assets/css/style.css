@@ -545,15 +545,19 @@ nav {
   display: block;
   width: 180px;
   aspect-ratio: 16 / 9;
-  height: auto;
-  object-fit: cover;
-  object-position: center;
+  background-color: var(--accent-blue);
   opacity: 0.55;
-  filter: brightness(0) saturate(100%) invert(32%) sepia(98%) saturate(2878%)
-    hue-rotate(226deg) brightness(101%) contrast(101%);
-  transition:
-    opacity 0.25s var(--ease-out),
-    filter 0.25s var(--ease-out);
+  -webkit-mask-image: var(--logo-url);
+  mask-image: var(--logo-url);
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
+  transition: opacity 0.25s var(--ease-out);
 }
 
 .experience-logo:hover .experience-logo-img,
