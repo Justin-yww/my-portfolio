@@ -70,7 +70,7 @@
         "name": "Justin Yong Wenn Weii",
         "alternateName": ["Justin Yong"],
         "url": "https://www.justinyww.dev/",
-        "image": "https://www.justinyww.dev/assets/img/profile.jpeg",
+        "image": "https://www.justinyww.dev/assets/img/profile.jpg",
         "jobTitle": "Software Engineering Graduate",
         "alumniOf": {
           "@type": "CollegeOrUniversity",
@@ -90,6 +90,13 @@
       sizes="32x32"
     />
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="assets/img/profile-560.webp"
+      fetchpriority="high"
+    />
     <link
       rel="preload"
       href="assets/fonts/space-grotesk-latin-600-normal.woff2"
@@ -149,13 +156,18 @@
             <a href="projects.html" class="cta-button">View work</a>
           </div>
           <div class="hero-image">
-            <img
-              src="assets/img/profile.jpeg"
-              alt="Justin Yong Wenn Weii — Software Engineering Graduate"
-              class="profile-picture"
-              width="280"
-              height="280"
-            />
+            <picture>
+              <source type="image/webp" srcset="assets/img/profile-560.webp" />
+              <img
+                src="assets/img/profile.jpg"
+                alt="Justin Yong Wenn Weii — Software Engineering Graduate"
+                class="profile-picture"
+                width="280"
+                height="280"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </picture>
           </div>
         </div>
       </div>
@@ -168,7 +180,7 @@
               <a
                 href="https://sharelah.app"
                 class="experience-logo"
-                style="--logo-url: url('/assets/img/logo-sharelah.svg')"
+                style="--logo-url: url('/assets/img/logo-sharelah.png')"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="ShareLah — Founder, open live app"
@@ -179,7 +191,7 @@
               <a
                 href="gallery.html#khazanah"
                 class="experience-logo"
-                style="--logo-url: url('/assets/img/logo-khazanah.svg')"
+                style="--logo-url: url('/assets/img/logo-khazanah.png')"
                 aria-label="Khazanah — AI & Data Intern, view gallery photo"
               >
                 <span class="experience-logo-img" aria-hidden="true"></span>
@@ -188,7 +200,7 @@
               <a
                 href="gallery.html#bcg"
                 class="experience-logo"
-                style="--logo-url: url('/assets/img/logo-bcg.svg')"
+                style="--logo-url: url('/assets/img/logo-bcg.png')"
                 aria-label="BCG — Emeralds Fellow, view gallery photo"
               >
                 <span class="experience-logo-img" aria-hidden="true"></span>
@@ -197,7 +209,7 @@
               <a
                 href="gallery.html#mastercard"
                 class="experience-logo"
-                style="--logo-url: url('/assets/img/logo-mastercard.svg')"
+                style="--logo-url: url('/assets/img/logo-mastercard.png')"
                 aria-label="Mastercard — Student Delegate, view gallery photo"
               >
                 <span class="experience-logo-img" aria-hidden="true"></span>
@@ -206,7 +218,7 @@
               <a
                 href="gallery.html#vlan"
                 class="experience-logo"
-                style="--logo-url: url('/assets/img/logo-vlan.svg')"
+                style="--logo-url: url('/assets/img/logo-vlan.png')"
                 aria-label="VLAN Asia — Practical Trainee, view gallery photo"
               >
                 <span class="experience-logo-img" aria-hidden="true"></span>
@@ -354,13 +366,22 @@
 
         <div class="gallery-preview-track fade-in">
           <a href="gallery.html" class="gallery-card">
-            <img
-              src="assets/img/img_BCGEmeralds.jpeg"
-              alt="BCG Emeralds Programme 2026"
-              width="1200"
-              height="800"
-              loading="lazy"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcset="assets/img/img_BCGEmeralds-400.webp 400w, assets/img/img_BCGEmeralds-800.webp 800w"
+                sizes="(max-width: 768px) 85vw, 340px"
+              />
+              <img
+                src="assets/img/img_BCGEmeralds.jpg"
+                alt="BCG Emeralds Programme 2026"
+                width="1200"
+                height="800"
+                loading="lazy"
+                decoding="async"
+                data-fullsrc="assets/img/img_BCGEmeralds-1200.webp"
+              />
+            </picture>
             <div class="gallery-card-caption">
               <h3>BCG Emeralds Programme 2026</h3>
               <p>
@@ -370,13 +391,22 @@
             </div>
           </a>
           <a href="gallery.html" class="gallery-card">
-            <img
-              src="assets/img/img_SunFest.jpeg"
-              alt="SunFest Opening Ceremony"
-              width="1200"
-              height="800"
-              loading="lazy"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcset="assets/img/img_SunFest-400.webp 400w, assets/img/img_SunFest-800.webp 800w"
+                sizes="(max-width: 768px) 85vw, 340px"
+              />
+              <img
+                src="assets/img/img_SunFest.jpg"
+                alt="SunFest Opening Ceremony"
+                width="1200"
+                height="800"
+                loading="lazy"
+                decoding="async"
+                data-fullsrc="assets/img/img_SunFest-1200.webp"
+              />
+            </picture>
             <div class="gallery-card-caption">
               <h3>SunFest 2025</h3>
               <p>
@@ -386,13 +416,22 @@
             </div>
           </a>
           <a href="gallery.html" class="gallery-card">
-            <img
-              src="assets/img/img_LancasterSummer.jpeg"
-              alt="Lancaster Summer School 2024"
-              width="1200"
-              height="800"
-              loading="lazy"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcset="assets/img/img_LancasterSummer-400.webp 400w, assets/img/img_LancasterSummer-800.webp 800w"
+                sizes="(max-width: 768px) 85vw, 340px"
+              />
+              <img
+                src="assets/img/img_LancasterSummer.jpg"
+                alt="Lancaster Summer School 2024"
+                width="1200"
+                height="800"
+                loading="lazy"
+                decoding="async"
+                data-fullsrc="assets/img/img_LancasterSummer-1200.webp"
+              />
+            </picture>
             <div class="gallery-card-caption">
               <h3>Lancaster Summer School 2024</h3>
               <p>

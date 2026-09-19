@@ -326,7 +326,8 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.classList.add("active");
         document.body.style.overflow = "hidden";
 
-        modalImg.src = img.src;
+        modalImg.src =
+          img.dataset.fullsrc || img.currentSrc || img.src;
         modalImg.alt = img.alt || card.dataset.title || "";
         titleEl.textContent = card.dataset.title || img.alt || "";
         descEl.textContent = card.dataset.description || "";

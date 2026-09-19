@@ -889,6 +889,12 @@ nav {
   transform: translateY(-3px);
 }
 
+.gallery-card picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .gallery-card img {
   display: block;
   width: 100%;
