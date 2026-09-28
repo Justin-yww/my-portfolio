@@ -560,6 +560,29 @@ nav {
   transition: opacity 0.25s var(--ease-out);
 }
 
+.experience-logo-img--mastercard {
+  position: relative;
+  background-color: transparent;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.experience-logo-img--mastercard > span {
+  position: absolute;
+  inset: 0;
+  background-color: var(--layer);
+  -webkit-mask-image: var(--logo-url);
+  mask-image: var(--logo-url);
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
+}
+
 .experience-logo:hover .experience-logo-img,
 .experience-logo:focus-visible .experience-logo-img {
   opacity: 0.9;
