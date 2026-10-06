@@ -97,45 +97,43 @@
     <section class="section projects-page">
       <div class="container">
         <div class="projects-grid stagger-children">
-          <!-- PROJECT #1 — RE4AI Framework (FYP) -->
+          <!-- PROJECT #1 — ShareLah -->
           <div class="project-card fade-in">
             <div class="project-image" aria-hidden="true">
               <svg viewBox="0 0 24 24">
-                <rect x="4" y="3" width="11" height="18" rx="1.5" />
-                <path d="M7 8h5M7 12h5M7 16h3" />
-                <circle cx="19" cy="8" r="2" />
-                <circle cx="19" cy="16" r="2" />
-                <path d="M15 8h2M15 16h2" />
+                <path
+                  d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"
+                />
+                <path d="M8 7h8M8 11h8M8 15h5" />
               </svg>
             </div>
             <div class="project-content">
               <h3 class="project-title">
-                FINAL YEAR PROJECT - RE4AI Framework 
+                SHARELAH - Group Expense Tracking App
               </h3>
               <p class="project-description">
-                A lightweight, paradigm-agnostic RE traceability
-                framework for consumer ML web apps. It helps bidirectionally link
-                Requirement IDs to artefacts, and was validated on
-                ShareLah, a social expense app with receipt OCR, expense
-                categorisation, and spending forecast.
+                A Malaysian group expense app for splitting bills, tracking
+                balances, and settling up with friends. Snap a receipt to
+                auto-fill merchant, amount, category, and payment method, then
+                split evenly, by person, or by line item.
               </p>
               <div class="project-meta">
-                <span class="project-tag">RE4AI Framework</span>
-                <span class="project-tag">ML</span>
-                <span class="project-tag">Kimi Moonshot-v1-8k</span>
+                <span class="project-tag">Next.js</span>
+                <span class="project-tag">Supabase</span>
+                <span class="project-tag">Groq</span>
+                <span class="project-tag">Qwen 3.6</span>
               </div>
               <div class="project-links">
                 <a
-                  href="https://fyp-justinyww.vercel.app/"
+                  href="https://sharelah.app"
                   class="project-link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >Scrollytelling Site</a
+                  >Live App</a
                 >
               </div>
             </div>
           </div>
-
           <!-- PROJECT #2 — Correlation Matrix Generator -->
           <div class="project-card fade-in">
             <div class="project-image" aria-hidden="true">
@@ -174,42 +172,79 @@
               </div>
             </div>
           </div>
-
-          <!-- PROJECT #3 — Safe Flame, Green Aim -->
+          <!-- PROJECT #3 — SEC13F Screener -->
           <div class="project-card fade-in">
             <div class="project-image" aria-hidden="true">
               <svg viewBox="0 0 24 24">
-                <path
-                  d="M12 2c1 4 5 6 5 11a5 5 0 1 1-10 0c0-3 2-5 3-7 1 2 2 3 2 3V2z"
-                />
-                <path d="M9 16a3 3 0 0 0 6 0" />
+                <path d="M4 19V5M4 19h16" />
+                <path d="M8 17V11M12 17V8M16 17v-5" />
               </svg>
             </div>
             <div class="project-content">
               <h3 class="project-title">
-                SAFE FLAME, GREEN AIM - Community Service Project
+                SEC13F SCREENER - Institutional Investor Tracking Tool
               </h3>
               <p class="project-description">
-                A community service project to bolster fire safety in Sunway
-                Desa Mentari, a public housing estate. Its implementation helped
-                improve the community's fire safety awareness and preparedness.
+                A side project to scrape SEC Form 13F holdings based on the CIK
+                number provided by the user. The Streamlit dashboard shows the
+                top 10 buys and sells by institutional investors and a list of
+                all portfolio changes between the two latest quarters.
               </p>
               <div class="project-meta">
-                <span class="project-tag">Community Engagement</span>
-                <span class="project-tag">Fire Safety</span>
+                <span class="project-tag">Python</span>
+                <span class="project-tag">Streamlit</span>
+                <span class="project-tag">Pandas</span>
+                <span class="project-tag">SEC EDGAR</span>
               </div>
               <div class="project-links">
                 <a
-                  href="assets/pdfs/safe_flame_green_aim.pdf"
-                  class="project-link js-pdf-preview"
-                  data-pdf-title="Safe Flame, Green Aim Slide Deck"
-                  >Slide Deck</a
+                  href="https://github.com/Justin-yww/SEC13F_Screener"
+                  class="project-link"
+                  target="_blank"
+                  >GitHub Repo</a
                 >
               </div>
             </div>
           </div>
-
-          <!-- PROJECT #4 -->
+          <!-- PROJECT #4 — RE4AI Framework (FYP) -->
+          <div class="project-card fade-in">
+            <div class="project-image" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect x="4" y="3" width="11" height="18" rx="1.5" />
+                <path d="M7 8h5M7 12h5M7 16h3" />
+                <circle cx="19" cy="8" r="2" />
+                <circle cx="19" cy="16" r="2" />
+                <path d="M15 8h2M15 16h2" />
+              </svg>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">
+                FINAL YEAR PROJECT - RE4AI Framework 
+              </h3>
+              <p class="project-description">
+                A lightweight, paradigm-agnostic RE traceability
+                framework for consumer ML web apps. It helps bidirectionally link
+                Requirement IDs to artefacts, and was validated on
+                ShareLah, a social expense app with receipt OCR, expense
+                categorisation, and spending forecast.
+              </p>
+              <div class="project-meta">
+                <span class="project-tag">RE4AI Framework</span>
+                <span class="project-tag">ML</span>
+                <span class="project-tag">Kimi Moonshot-v1-8k</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://fyp-justinyww.vercel.app/"
+                  class="project-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Scrollytelling Site</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- PROJECT #5 — GrabBuddy -->
           <div class="project-card fade-in">
             <div class="project-image" aria-hidden="true">
               <svg viewBox="0 0 24 24">
@@ -256,8 +291,40 @@
               </div>
             </div>
           </div>
-
-          <!-- PROJECT #5 -->
+          <!-- PROJECT #6 — Safe Flame, Green Aim -->
+          <div class="project-card fade-in">
+            <div class="project-image" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2c1 4 5 6 5 11a5 5 0 1 1-10 0c0-3 2-5 3-7 1 2 2 3 2 3V2z"
+                />
+                <path d="M9 16a3 3 0 0 0 6 0" />
+              </svg>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">
+                SAFE FLAME, GREEN AIM - Community Service Project
+              </h3>
+              <p class="project-description">
+                A community service project to bolster fire safety in Sunway
+                Desa Mentari, a public housing estate. Its implementation helped
+                improve the community's fire safety awareness and preparedness.
+              </p>
+              <div class="project-meta">
+                <span class="project-tag">Community Engagement</span>
+                <span class="project-tag">Fire Safety</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="assets/pdfs/safe_flame_green_aim.pdf"
+                  class="project-link js-pdf-preview"
+                  data-pdf-title="Safe Flame, Green Aim Slide Deck"
+                  >Slide Deck</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- PROJECT #7 — DriveSense -->
           <div class="project-card fade-in">
             <div class="project-image" aria-hidden="true">
               <svg viewBox="0 0 24 24">
@@ -299,8 +366,7 @@
               </div>
             </div>
           </div>
-
-          <!-- PROJECT #6 -->
+          <!-- PROJECT #8 — NutriQuest -->
           <div class="project-card fade-in">
             <div class="project-image" aria-hidden="true">
               <svg viewBox="0 0 24 24">
@@ -342,79 +408,7 @@
               </div>
             </div>
           </div>
-
-          <!-- PROJECT #7 -->
-          <div class="project-card fade-in">
-            <div class="project-image" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M4 19V5M4 19h16" />
-                <path d="M8 17V11M12 17V8M16 17v-5" />
-              </svg>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">
-                SEC13F SCREENER - Institutional Investor Tracking Tool
-              </h3>
-              <p class="project-description">
-                A side project to scrape SEC Form 13F holdings based on the CIK
-                number provided by the user. The Streamlit dashboard shows the
-                top 10 buys and sells by institutional investors and a list of
-                all portfolio changes between the two latest quarters.
-              </p>
-              <div class="project-meta">
-                <span class="project-tag">Python</span>
-                <span class="project-tag">Streamlit</span>
-                <span class="project-tag">Pandas</span>
-                <span class="project-tag">SEC EDGAR</span>
-              </div>
-              <div class="project-links">
-                <a
-                  href="https://github.com/Justin-yww/SEC13F_Screener"
-                  class="project-link"
-                  target="_blank"
-                  >GitHub Repo</a
-                >
-              </div>
-            </div>
-          </div>
-
-          <!-- PROJECT #8 -->
-          <div class="project-card fade-in">
-            <div class="project-image" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"
-                />
-                <path d="M8 7h8M8 11h8M8 15h5" />
-              </svg>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">
-                SHARELAH - Group Expense Tracking App
-              </h3>
-              <p class="project-description">
-                A Malaysian group expense app for splitting bills, tracking
-                balances, and settling up with friends. Snap a receipt to
-                auto-fill merchant, amount, category, and payment method, then
-                split evenly, by person, or by line item.
-              </p>
-              <div class="project-meta">
-                <span class="project-tag">Next.js</span>
-                <span class="project-tag">Supabase</span>
-                <span class="project-tag">Groq</span>
-                <span class="project-tag">Qwen 3.6</span>
-              </div>
-              <div class="project-links">
-                <a
-                  href="https://sharelah.app"
-                  class="project-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Live App</a
-                >
-              </div>
-            </div>
-          </div>
+        
         </div>
       </div>
     </section>
