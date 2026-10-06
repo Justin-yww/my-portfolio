@@ -149,12 +149,23 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!prefersReducedMotion) {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
+        entries
+          .filter((entry) => entry.isIntersecting)
+          .forEach((entry, i) => {
+            const el = entry.target;
+            if (el.closest(".stagger-children")) {
+              el.style.transitionDelay = `${i * 80}ms`;
+              el.addEventListener(
+                "transitionend",
+                () => {
+                  el.style.transitionDelay = "";
+                },
+                { once: true }
+              );
+            }
+            el.classList.add("visible");
+            observer.unobserve(el);
+          });
       },
       {
         threshold: 0.1,
@@ -481,8 +492,13 @@ document.addEventListener("DOMContentLoaded", function () {
       if (pdfLastFocus && pdfLastFocus.focus) pdfLastFocus.focus();
     }
 
+    const inlinePdfQuery = window.matchMedia(
+      "(min-width: 769px) and (hover: hover) and (pointer: fine)"
+    );
+
     pdfTriggers.forEach((link) => {
       link.addEventListener("click", (e) => {
+        if (!inlinePdfQuery.matches) return;
         e.preventDefault();
         const url = link.getAttribute("href");
         if (!url) return;

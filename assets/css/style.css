@@ -180,22 +180,6 @@ h6 {
   transform: translateY(0);
 }
 
-.stagger-children .fade-in:nth-child(1) {
-  transition-delay: 0s;
-}
-.stagger-children .fade-in:nth-child(2) {
-  transition-delay: 0.1s;
-}
-.stagger-children .fade-in:nth-child(3) {
-  transition-delay: 0.2s;
-}
-.stagger-children .fade-in:nth-child(4) {
-  transition-delay: 0.3s;
-}
-.stagger-children .fade-in:nth-child(5) {
-  transition-delay: 0.4s;
-}
-
 /* ===== NAVIGATION ===== */
 nav {
   position: fixed;
@@ -643,6 +627,7 @@ nav {
   border: 1px solid var(--border-primary);
   box-shadow: var(--shadow-sm);
   transition:
+    opacity 0.7s var(--ease-out),
     transform 0.4s var(--ease-spring),
     border-color 0.3s var(--ease-out),
     box-shadow 0.3s var(--ease-out);
@@ -753,10 +738,14 @@ nav {
   font-size: 0.8rem;
   font-weight: 500;
   font-family: "Space Grotesk", system-ui, sans-serif;
-  animation: project-link-ring 3s linear infinite;
   transition:
     color 0.2s var(--ease-out),
     box-shadow 0.2s var(--ease-out);
+}
+
+.project-link:hover,
+.project-link:focus-visible {
+  animation: project-link-ring 3s linear infinite;
 }
 
 .project-link:hover {
@@ -1790,8 +1779,17 @@ nav {
     height: 160px;
   }
 
+  .project-image {
+    height: 88px;
+  }
+
+  .project-image svg {
+    width: 36px;
+    height: 36px;
+  }
+
   .page-header {
-    padding: 120px 0 56px;
+    padding: 96px 0 40px;
   }
 
   .header-content h1 {
