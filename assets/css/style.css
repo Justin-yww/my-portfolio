@@ -544,14 +544,16 @@ nav {
   transition: opacity 0.25s var(--ease-out);
 }
 
-.experience-logo-img--mastercard {
+.experience-logo-img--mastercard,
+.experience-logo-img--gobi {
   position: relative;
   background-color: transparent;
   -webkit-mask-image: none;
   mask-image: none;
 }
 
-.experience-logo-img--mastercard > span {
+.experience-logo-img--mastercard > span,
+.experience-logo-img--gobi > span {
   position: absolute;
   inset: 0;
   background-color: var(--layer);
